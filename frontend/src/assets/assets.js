@@ -1,35 +1,42 @@
+// import logo from "./logo.svg";
 import sample_cover from "./sample_cover.jpg";
 import sample_profile from "./sample_profile.jpg";
 import bgImage from "./bgImage.png";
 import group_users from "./group_users.png";
 import { Home, MessageCircle, Search, UserIcon, Users } from "lucide-react";
+import sponsored_img from "./sponsored_img.png";
 
 export const assets = {
+  // logo,
   sample_cover,
   sample_profile,
   bgImage,
   group_users,
-  // sponsored_img,
+  sponsored_img,
 };
 
 export const menuItemsData = [
   { to: "/", label: "Public Issues", Icon: Home },
-  { to: "/profile", label: "My Posted Issues", Icon: UserIcon },
+  { to: "/dashboard", label: "Dashboard", Icon: Users },
   { to: "/messages", label: "Message Notifications", Icon: MessageCircle },
-  { to: "/connections", label: "Connections", Icon: Users },
-  { to: "/discover", label: "Discover", Icon: Search },
+  { to: "/myissues", label: "My Issues", Icon: UserIcon },
+  // { to: "/connections", label: "Connections", Icon: Users },
+  // { to: "/discover", label: "Discover", Icon: Search },
   { to: "/profile", label: "Profile", Icon: UserIcon },
 ];
 
 export const dummyUserData = {
   _id: "user_2zdFoZib5lNr614LgkONdD8WG32",
   email: "admin@example.com",
-  full_name: "David Elias",
-  username: "david_elias",
+  full_name: "Abdulla",
+  username: "abdulla",
   bio: "🌍 Dreamer | 📚 Learner | 🚀 Doer\r\nExploring life one step at a time.\r\n✨ Staying curious. Creating with purpose.",
   profile_picture: sample_profile,
   cover_photo: sample_cover,
-  location: "Colombo3, Sri Lanka",
+  location: "New York, NY",
+  followers: ["user_2", "user_3"],
+  following: ["user_2", "user_3"],
+  connections: ["user_2", "user_3"],
   posts: [],
   is_verified: true,
   createdAt: "2025-07-09T09:26:59.231Z",
@@ -39,8 +46,8 @@ export const dummyUserData = {
 const dummyUser2Data = {
   ...dummyUserData,
   _id: "user_2",
-  username: "Richard Perez",
-  full_name: "Richard Perez",
+  username: "Richard Paul",
+  full_name: "Richard paul",
   profile_picture:
     "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
 };
@@ -48,8 +55,8 @@ const dummyUser2Data = {
 const dummyUser3Data = {
   ...dummyUserData,
   _id: "user_3",
-  username: "alexa_paula",
-  full_name: "Alexa Paula",
+  username: "samantha_james",
+  full_name: "Samantha james",
   profile_picture:
     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop",
 };
@@ -58,8 +65,7 @@ export const dummyStoriesData = [
   {
     _id: "68833d466e4b42b685068860",
     user: dummyUserData,
-    content:
-      "📌 This isn't the story I wanted to tell… not yet. But if you're reading this, know that something interesting is in motion 🔄. The next post will make more sense 🧩.",
+    content: "📌 This is the first Story.",
     media_url: "",
     media_type: "text",
     background_color: "#4f46e5",
@@ -69,7 +75,7 @@ export const dummyStoriesData = [
   {
     _id: "688340046e4b42b685068a73",
     user: dummyUserData,
-    content: "",
+    content: "This is a image Story of issues",
     media_url:
       "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg",
     media_type: "image",
@@ -80,7 +86,7 @@ export const dummyStoriesData = [
   {
     _id: "68833fe96e4b42b685068a5e",
     user: dummyUserData,
-    content: "",
+    content: "this is a video story of issue",
     media_url:
       "https://videos.pexels.com/video-files/14447442/14447442-hd_1080_1920_30fps.mp4",
     media_type: "video",
@@ -102,8 +108,7 @@ export const dummyStoriesData = [
   {
     _id: "68833d706e4b42b685068875",
     user: dummyUserData,
-    content:
-      "🤫 Not every moment needs to be loud. Sometimes, the best things happen in silence — in drafts 📝, in progress 🧪, in planning 📊. That's where I am right now.",
+    content: "This is the fifth issue Story.",
     media_url: "",
     media_type: "text",
     background_color: "#4f46e5",
@@ -113,8 +118,7 @@ export const dummyStoriesData = [
   {
     _id: "68833c9e6e4b42b6850687e7",
     user: dummyUserData,
-    content:
-      "✨ Something meaningful is on the way. I'm working behind the scenes 🛠️ to bring it all together. This space is just the beginning 🌱. Stay tuned 👀.",
+    content: "✨ This is issue Story number 6.",
     media_url: "",
     media_type: "text",
     background_color: "#4f46e5",
@@ -195,6 +199,42 @@ export const dummyPostsData = [
   },
 ];
 
+export const dummyRecentMessagesData = [
+  {
+    _id: "68833af618623d2de81b5381",
+    from_user_id: dummyUser2Data,
+    to_user_id: dummyUserData,
+    text: "I seen your profile",
+    message_type: "text",
+    media_url: "",
+    seen: true,
+    createdAt: "2025-07-25T08:06:14.436Z",
+    updatedAt: "2025-07-25T08:47:47.768Z",
+  },
+  {
+    _id: "6878cc3c17a54e4d3748012f",
+    from_user_id: dummyUserData,
+    to_user_id: dummyUserData,
+    text: "This is a Samsung Tablet",
+    message_type: "text",
+    media_url: "",
+    createdAt: "2025-07-17T10:11:08.437Z",
+    updatedAt: "2025-07-25T08:07:11.893Z",
+    seen: true,
+  },
+  {
+    _id: "686fb66c7f0dcbff63b239e7",
+    from_user_id: dummyUser3Data,
+    to_user_id: dummyUserData,
+    text: "how are you",
+    message_type: "text",
+    media_url: "",
+    createdAt: "2025-07-10T12:47:40.510Z",
+    updatedAt: "2025-07-10T12:47:40.510Z",
+    seen: false,
+  },
+];
+
 export const dummyMessagesData = [
   {
     _id: "6878cc3217a54e4d37480122",
@@ -241,6 +281,12 @@ export const dummyMessagesData = [
     updatedAt: "2025-08-25T10:43:50.346Z",
     seen: true,
   },
+];
+
+export const dummyConnectionsData = [
+  dummyUserData,
+  dummyUser2Data,
+  dummyUser3Data,
 ];
 
 export const dummyFollowersData = [dummyUser2Data, dummyUser3Data];
