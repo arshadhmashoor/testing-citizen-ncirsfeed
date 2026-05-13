@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const user_c_Schema = new mongoose.Schema(
+const citizenFeedSchema = new mongoose.Schema(
   {
     _id: { type: String, required: true }, //clerk user id
     email: { type: String, unique: true },
