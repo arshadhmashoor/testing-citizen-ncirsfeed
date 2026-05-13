@@ -1,5 +1,5 @@
 import { Inngest } from "inngest";
-import User from "../models/User.js";
+import User from "../models/CitizenFeed.js";
 
 // Create a client to send and receive events
 // export const inngest = new Inngest({ id: "arshadncirs-be" });
@@ -21,7 +21,7 @@ const syncUserCreation = inngest.createFunction(
 
     let username = email.split("@")[0];
 
-    const existingUser = await User.findOne({ username });
+    const existingUser = await CitizenFeed.findOne({ username });
 
     if (existingUser) {
       username = username + Math.floor(Math.random() * 10000);
@@ -35,7 +35,7 @@ const syncUserCreation = inngest.createFunction(
       username,
     };
 
-    await User.create(userData);
+    await CitizenFeed.create(userData);
   }
 );
 
@@ -79,7 +79,7 @@ const syncUserUpdation = inngest.createFunction(
       full_name: `${first_name || ""} ${last_name || ""}`.trim(),
       profile_picture: image_url,
     };
-    await User.findByIdAndUpdate(id, updatedUserData);
+    await CitizenFeed.findByIdAndUpdate(id, updatedUserData);
   }
 );
 
@@ -91,7 +91,7 @@ const syncUserDeletion = inngest.createFunction(
   async ({ event }) => {
     const { id } = event.data;
 
-    await User.findByIdAndDelete(id);
+    await CitizenFeed.findByIdAndDelete(id);
   }
 );
 
