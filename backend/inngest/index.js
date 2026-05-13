@@ -3,7 +3,7 @@ import User from "../models/User.js";
 
 // Create a client to send and receive events
 // export const inngest = new Inngest({ id: "arshadncirs-be" });
-export const inngest = new Inngest({ id: "arshad-ncirs-bk" });
+export const inngest = new Inngest({ id: "ncirs-wed" });
 
 //inngest functions to save userCitizen data to a database
 const syncUserCreation = inngest.createFunction(
