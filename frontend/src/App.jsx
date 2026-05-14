@@ -10,13 +10,21 @@ import Profile from "./pages/Profile";
 import CreatePost from "./pages/CreatePost";
 import Dashboard from "./pages/Dashboard";
 import Notifications from "./pages/Notifications";
-import { useUser } from "@clerk/react";
+import { useUser, useAuth } from "@clerk/react";
 import Layout from "./pages/Layout";
 import { Toaster } from "react-hot-toast";
 import MyIssues from "./pages/MyIssues";
+import { useEffect } from "react";
 
 const App = () => {
   const { user } = useUser();
+  const { getToken } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      getToken().then((token) => console.log(token));
+    }
+  }, [user]);
   return (
     <>
       <Toaster />
