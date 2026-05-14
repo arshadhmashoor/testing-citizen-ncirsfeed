@@ -4,6 +4,7 @@ import "dotenv/config";
 import connectDB from "./configs/db.js";
 import { inngest, functions } from "./inngest/index.js";
 import { serve } from "inngest/express";
+import { clerkMiddleware } from "@clerk/express";
 
 // console.log("Mongo URL exists:", !!process.env.MONGODB_URL);
 
@@ -15,6 +16,9 @@ await connectDB();
 // middle ware
 app.use(express.json());
 app.use(cors());
+//all requests will be pased via this
+//  add auth when user is authenticated
+app.use(clerkMiddleware());
 
 //create routes
 app.get("/", (req, res) => res.send(" Server is running!"));
