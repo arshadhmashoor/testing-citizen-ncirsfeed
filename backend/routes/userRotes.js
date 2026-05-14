@@ -11,8 +11,8 @@ const userRouter = express.Router();
 
 //create url/api end points
 userRouter.get("/data", protect, getUserData);
-userRouter.get(
-  "update",
+userRouter.post(
+  "/update",
   upload.fields([
     { name: "profile", maxCount: 1 },
     { name: "cover", maxCount: 1 },
@@ -20,6 +20,6 @@ userRouter.get(
   protect,
   updateUserData
 );
-userRouter.get("/discover", protect, discoverUsers);
+userRouter.post("/discover", protect, discoverUsers);
 
 export default userRouter;
