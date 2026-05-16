@@ -24,7 +24,8 @@ export const getUserData = async (req, res) => {
 //update user data
 export const updateUserData = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.userId;
     let { username, bio, location, full_name } = req.body;
 
     const tempUser = await CitizenFeed.findById(userId);
@@ -100,7 +101,8 @@ export const updateUserData = async (req, res) => {
 //find users using username, email, location, name
 export const discoverUsers = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.userId;
     const { input } = req.body;
 
     const allUsers = await CitizenFeed.find({
