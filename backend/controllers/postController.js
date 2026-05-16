@@ -1,7 +1,7 @@
 import fs from "fs";
 import imagekit from "../configs/imageKit.js";
 import Post from "../models/Post.js";
-import CitizenFeed from "../models/CitizenFeed";
+import CitizenFeed from "../models/CitizenFeed.js";
 
 //add post issue
 export const addPost = async (req, res) => {
@@ -53,8 +53,6 @@ export const getFeedPosts = async (req, res) => {
   try {
     const { userId } = req.auth();
     const user = await CitizenFeed.findById(userId);
-
-
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
@@ -65,21 +63,19 @@ export const getFeedPosts = async (req, res) => {
 export const votePost = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const {postId} = req.body
+    const { postId } = req.body;
 
-    const post = await Post.findById(postId)
+    const post = await Post.findById(postId);
 
-    if(post.votes_count.includes(userId)){
-        post.votes_count = post.votes_count.filter(user=> user !=== userId)
-        await Post.save();
-        res.json({ success: true, message: "Issue unVoted" });
-    }else{
-        post.votes_count.push(userId)
-        await post.save();
-        res.json({ success: true, message: "Issue upVoted" });
+    if (post.votes_count.includes(userId)) {
+      post.votes_count = post.votes_count.filter((user) => user !== userId);
+      await Post.save();
+      res.json({ success: true, message: "Issue unVoted" });
+    } else {
+      post.votes_count.push(userId);
+      await post.save();
+      res.json({ success: true, message: "Issue upVoted" });
     }
-
-
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });

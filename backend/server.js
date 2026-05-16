@@ -6,6 +6,7 @@ import { inngest, functions } from "./inngest/index.js";
 import { serve } from "inngest/express";
 import { clerkMiddleware } from "@clerk/express";
 import userRouter from "./routes/userRotes.js";
+import postRouter from "./routes/postRoutes.js";
 
 // console.log("Mongo URL exists:", !!process.env.MONGODB_URL);
 
@@ -25,6 +26,7 @@ app.use(clerkMiddleware());
 app.get("/", (req, res) => res.send(" Server is running!"));
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/user", userRouter);
+app.use("/api/post", postRouter);
 
 const PORT = process.env.PORT || 4000;
 
