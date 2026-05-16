@@ -24,7 +24,6 @@ const App = () => {
     const test = async () => {
       if (user) {
         const token = await getToken();
-        console.log("TOKEN ONLY:", token);
 
         const res = await fetch("http://localhost:4000/api/user/data", {
           credentials: "include",
@@ -34,7 +33,7 @@ const App = () => {
         });
 
         const data = await res.json();
-        console.log(data);
+        console.log("USER DATA:", data);
       }
     };
 
