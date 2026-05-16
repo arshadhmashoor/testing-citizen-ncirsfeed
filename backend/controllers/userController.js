@@ -7,7 +7,9 @@ import fs from "fs";
 //get user data using userId
 export const getUserData = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    //const { userId } = req.auth();
+    //temprarity use the below instead of req.auth
+    const userId = req.userId;
     const user = await CitizenFeed.findById(userId);
     if (!user) {
       return res.json({ success: false, message: "user not found" });

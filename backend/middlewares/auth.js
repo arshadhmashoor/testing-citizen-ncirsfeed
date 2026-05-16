@@ -1,6 +1,18 @@
-import { requireAuth } from "@clerk/express";
+import { getAuth } from "@clerk/express";
 
-export const protect = requireAuth();
+export const protect = (req, res, next) => {
+  const { userId } = getAuth(req);
+
+  if (!userId) {
+    return res.status(401).json({
+      success: false,
+      message: "not authenticated",
+    });
+  }
+
+  req.userId = userId;
+  next();
+};
 
 // export const protect = (req, res, next) => {
 //   try {
