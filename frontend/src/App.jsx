@@ -21,23 +21,9 @@ const App = () => {
   const { getToken } = useAuth();
 
   useEffect(() => {
-    const test = async () => {
-      if (user) {
-        const token = await getToken();
-        console.log("TOKEN:", token);
-
-        const res = await fetch("http://localhost:4000/api/user/data", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const data = await res.json();
-        console.log(data);
-      }
-    };
-
-    test();
+    if (user) {
+      getToken().then((token) => console.log("TOKEN:", token));
+    }
   }, [user]);
   // useEffect(() => {
   //   if (user) {
