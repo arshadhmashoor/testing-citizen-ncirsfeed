@@ -1,27 +1,31 @@
-export const protect = (req, res, next) => {
-  try {
-    const auth = req.auth();
-    console.log("CLERK AUTH:", auth);
+import { requireAuth } from "@clerk/express";
 
-    const { userId } = auth;
+export const protect = requireAuth();
 
-    if (!userId) {
-      return res.status(401).json({
-        success: false,
-        message: "not authenticated",
-      });
-    }
+// export const protect = (req, res, next) => {
+//   try {
+//     const auth = req.auth();
+//     console.log("CLERK AUTH:", auth);
 
-    next();
-  } catch (error) {
-    console.log("AUTH ERROR:", error);
+//     const { userId } = auth;
 
-    return res.status(401).json({
-      success: false,
-      message: "not authenticated",
-    });
-  }
-};
+//     if (!userId) {
+//       return res.status(401).json({
+//         success: false,
+//         message: "not authenticated",
+//       });
+//     }
+
+//     next();
+//   } catch (error) {
+//     console.log("AUTH ERROR:", error);
+
+//     return res.status(401).json({
+//       success: false,
+//       message: "not authenticated",
+//     });
+//   }
+// };
 
 // export const protect = async (req, res, next) => {
 //   try {
