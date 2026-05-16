@@ -24,6 +24,7 @@ const App = () => {
     const test = async () => {
       if (user) {
         const token = await getToken();
+        console.log("TOKEN:", token);
 
         const res = await fetch("http://localhost:4000/api/user/data", {
           headers: {
