@@ -19,7 +19,13 @@ await connectDB();
 
 // middle ware
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 //all requests will be pased via this
 //  add auth when user is authenticated
 //app.use(clerkMiddleware());

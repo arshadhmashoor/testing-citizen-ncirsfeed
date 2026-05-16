@@ -6,7 +6,7 @@ export const protect = (req, res, next) => {
   if (!userId) {
     return res.status(401).json({
       success: false,
-      message: "not authenticated",
+      message: "not authenticated1",
     });
   }
 
