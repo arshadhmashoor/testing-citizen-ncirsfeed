@@ -1,7 +1,5 @@
-import { getAuth } from "@clerk/express";
-
 export const protect = (req, res, next) => {
-  const { userId } = getAuth(req);
+  const { userId } = req.auth();
 
   if (!userId) {
     return res.status(401).json({
