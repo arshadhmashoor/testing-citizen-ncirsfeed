@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+//temporarity
+console.log("Clerk secret exists:", !!process.env.CLERK_SECRET_KEY);
 import connectDB from "./configs/db.js";
 import { inngest, functions } from "./inngest/index.js";
 import { serve } from "inngest/express";
@@ -20,7 +22,12 @@ app.use(express.json());
 app.use(cors());
 //all requests will be pased via this
 //  add auth when user is authenticated
-app.use(clerkMiddleware());
+//app.use(clerkMiddleware());
+app.use(
+  clerkMiddleware({
+    secretKey: process.env.CLERK_SECRET_KEY,
+  })
+);
 
 //create routes
 app.get("/", (req, res) => res.send(" Server is running!"));
