@@ -9,6 +9,7 @@ export const getUserData = async (req, res) => {
   try {
     //const { userId } = req.auth();
     //temprarity use the below instead of req.auth
+    //const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
     const userId = req.userId;
     const user = await CitizenFeed.findById(userId);
     if (!user) {
