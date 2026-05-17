@@ -8,10 +8,10 @@ import Post from "../models/Post.js";
 //get user data using userId
 export const getUserData = async (req, res) => {
   try {
-    //const { userId } = req.auth();
+    const { userId } = req.auth();
     //temprarity use the below instead of req.auth
-    //const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
-    const userId = req.userId;
+    // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
+    // const userId = req.userId;
     const user = await CitizenFeed.findById(userId);
     if (!user) {
       return res.json({ success: false, message: "user not found" });
@@ -26,9 +26,9 @@ export const getUserData = async (req, res) => {
 //update user data
 export const updateUserData = async (req, res) => {
   try {
-    // const { userId } = req.auth();
+    const { userId } = req.auth();
     // const userId = req.userId;
-    const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
+    // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
     let { username, bio, location, full_name } = req.body;
 
     const tempUser = await CitizenFeed.findById(userId);
@@ -104,8 +104,8 @@ export const updateUserData = async (req, res) => {
 //find users using username, email, location, name
 export const discoverUsers = async (req, res) => {
   try {
-    // const { userId } = req.auth();
-    const userId = req.userId;
+    const { userId } = req.auth();
+    // const userId = req.userId;
     const { input } = req.body;
 
     const allUsers = await CitizenFeed.find({

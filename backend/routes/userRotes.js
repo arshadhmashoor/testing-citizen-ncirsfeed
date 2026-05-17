@@ -18,11 +18,11 @@ userRouter.post(
     { name: "profile", maxCount: 1 },
     { name: "cover", maxCount: 1 },
   ]),
-  // protect,
+  protect,
   updateUserData
 );
 userRouter.post("/discover", protect, discoverUsers);
 
-userRouter.post("/profile", getUserProfiles);
+userRouter.post("/profile", protect, getUserProfiles);
 
 export default userRouter;

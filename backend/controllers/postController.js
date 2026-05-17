@@ -6,9 +6,9 @@ import CitizenFeed from "../models/CitizenFeed.js";
 //add post issue
 export const addPost = async (req, res) => {
   try {
-    // const { userId } = req.auth();
+    const { userId } = req.auth();
     // const { userId } = req.userId;
-    const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
+    // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
     const { content, post_type } = req.body;
     const images = req.files;
 
@@ -63,7 +63,9 @@ export const getFeedPosts = async (req, res) => {
     //   .sort({ createdAt: -1 });
 
     // res.json({ success: true, posts });
-    const posts = await Post.find().populate("user").sort({ createdAt: -1 });
+    const posts = await Post.find({ user: userId })
+      .populate("user")
+      .sort({ createdAt: -1 });
 
     res.json({ success: true, posts });
   } catch (error) {
