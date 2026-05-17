@@ -9,8 +9,8 @@ import {
 
 const postRouter = express.Router();
 
-postRouter.post("/add", upload.array("images", 4), protect, addPost);
-postRouter.get("/feed", protect, getFeedPosts);
+postRouter.post("/add", upload.array("images", 4), addPost);
+postRouter.get("/feed", getFeedPosts);
 postRouter.post("/vote", protect, votePost);
 
 export default postRouter;

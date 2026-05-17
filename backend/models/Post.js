@@ -15,9 +15,13 @@ const postSchema = new mongoose.Schema(
   { timestamps: true, minimize: false }
 );
 
-const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+const Post = mongoose.model("Post", postSchema);
 
 export default Post;
+
+// const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+
+// export default Post;
 
 // import mongoose from "mongoose";
 

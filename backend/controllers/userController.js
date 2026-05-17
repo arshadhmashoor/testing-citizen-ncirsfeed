@@ -2,6 +2,7 @@
 import imagekit from "../configs/imageKit.js";
 import CitizenFeed from "../models/CitizenFeed.js";
 import fs from "fs";
+import Post from "../models/Post.js";
 //function to get and update user /citizen data
 
 //get user data using userId
@@ -26,7 +27,8 @@ export const getUserData = async (req, res) => {
 export const updateUserData = async (req, res) => {
   try {
     // const { userId } = req.auth();
-    const userId = req.userId;
+    // const userId = req.userId;
+    const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
     let { username, bio, location, full_name } = req.body;
 
     const tempUser = await CitizenFeed.findById(userId);
@@ -117,6 +119,22 @@ export const discoverUsers = async (req, res) => {
     const filteredUsers = allUsers.filter((user) => user._id !== userId);
 
     res.json({ success: true, users: filteredUsers });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+//get user profile of other citizesn/users
+export const getUserProfiles = async (res, req) => {
+  try {
+    const { profileId } = req.body;
+    const profile = await CitizenFeed.findById(profileId);
+    if (!profile) {
+      return res.json({ success: false, message: "Profile not found" });
+    }
+    const posts = await Post.find({ user: profileId }).populate("user");
+    res.json({ success: true, profile, posts });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
