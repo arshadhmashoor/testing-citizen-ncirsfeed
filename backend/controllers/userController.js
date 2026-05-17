@@ -87,7 +87,7 @@ export const updateUserData = async (req, res) => {
       });
       updatedData.cover_photo = url;
     }
-
+    //save photos in db
     const user = await CitizenFeed.findByIdAndUpdate(userId, updatedData, {
       new: true,
     });

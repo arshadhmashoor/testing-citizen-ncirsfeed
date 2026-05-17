@@ -4,22 +4,22 @@ import {
   getUserData,
   updateUserData,
 } from "../controllers/userController.js";
-import { protect } from "../middlewares/auth.js";
+//import { protect } from "../middlewares/auth.js";
 import { upload } from "../configs/multer.js";
 
 const userRouter = express.Router();
 
 //create url/api end points
-userRouter.get("/data", protect, getUserData);
+userRouter.get("/data", getUserData);
 userRouter.post(
   "/update",
   upload.fields([
     { name: "profile", maxCount: 1 },
     { name: "cover", maxCount: 1 },
   ]),
-  protect,
+  // protect,
   updateUserData
 );
-userRouter.post("/discover", protect, discoverUsers);
+userRouter.post("/discover", discoverUsers);
 
 export default userRouter;
