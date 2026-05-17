@@ -21,24 +21,31 @@ const App = () => {
   const { getToken } = useAuth();
 
   useEffect(() => {
-    const test = async () => {
-      if (user) {
-        const token = await getToken();
-
-        const res = await fetch("http://localhost:4000/api/user/data", {
-          credentials: "include",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const data = await res.json();
-        console.log("USER DATA:", data);
-      }
-    };
-
-    test();
+    if (user) {
+      getToken().then((token) => console.log(token));
+    }
   }, [user]);
+
+  // useEffect(() => {
+  //   const test = async () => {
+  //     if (user) {
+  //       const token = await getToken();
+
+  //       const res = await fetch("http://localhost:4000/api/user/data", {
+  //         credentials: "include",
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       const data = await res.json();
+  //       console.log("USER DATA:", data);
+  //     }
+  //   };
+  //
+  //   test();
+  // }, [user]);
+  //===+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // useEffect(() => {
   //   if (user) {
   //     getToken().then((token) => console.log(token));
