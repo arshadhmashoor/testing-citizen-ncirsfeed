@@ -6,23 +6,34 @@
 export const protect = async (req, res, next) => {
   try {
     const { userId } = await req.auth();
-
     if (!userId) {
-      return res.status(401).json({
-        success: false,
-        message: "not authenticated",
-      });
+      return res.json({ success: false, message: "not authenticated" });
     }
-
-    req.userId = userId;
     next();
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: error.message,
-    });
+    res.json({ success: false, message: error.message });
   }
 };
+// export const protect = async (req, res, next) => {
+//   try {
+//     const { userId } = await req.auth();
+
+//     if (!userId) {
+//       return res.status(401).json({
+//         success: false,
+//         message: "not authenticated",
+//       });
+//     }
+
+//     //req.userId = userId;
+//     next();
+//   } catch (error) {
+//     return res.status(401).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
 
 // export const protect = (req, res, next) => {
 //   const { userId } = req.auth();
