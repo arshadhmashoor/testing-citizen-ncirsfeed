@@ -53,7 +53,9 @@ export const addPost = async (req, res) => {
 //Get post issue
 export const getFeedPosts = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.auth();
+    // const  {userId}  = req.auth();
     const user = await CitizenFeed.findById(userId);
 
     //const userId = [userId];
