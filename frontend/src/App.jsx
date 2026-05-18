@@ -16,7 +16,7 @@ import toast, { Toaster } from "react-hot-toast";
 import MyIssues from "./pages/MyIssues";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchUser } from "./features/citizen/citizenSlice";
+import { fetchUser } from "./features/citizen/userSlice";
 
 const App = () => {
   const { user } = useUser();
