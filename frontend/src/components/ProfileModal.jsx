@@ -42,8 +42,7 @@ const ProfileModal = ({ setShowEdit }) => {
       cover_photo && userData.append("cover", cover_photo);
 
       const token = await getToken();
-      dispatch(updateUser({ userData, token }));
-
+      await dispatch(updateUser({ userData, token })).unwrap();
       setShowEdit(false);
     } catch (error) {
       toast.error(error.message);
