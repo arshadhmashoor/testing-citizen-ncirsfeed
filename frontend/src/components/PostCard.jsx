@@ -4,6 +4,7 @@ import moment from "moment";
 // import { dummyUserData } from '../assets/assets'
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useAuth } from "@clerk/react";
 
 const PostCard = ({ post }) => {
   const postWithHashtags = (post.content || "").replace(
@@ -20,6 +21,8 @@ const PostCard = ({ post }) => {
     post.likes_count || post.votes_count || []
   );
   const currentUser = useSelector((state) => state.user.value);
+
+  const { getToken } = useAuth();
   const handleLike = async () => {};
 
   const navigate = useNavigate();
