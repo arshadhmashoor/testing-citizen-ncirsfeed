@@ -55,20 +55,18 @@ export const addPost = async (req, res) => {
 export const getFeedPosts = async (req, res) => {
   try {
     // const { userId } = req.auth();
-    const userId = req.auth();
+    // const userId = req.userId;
     // const  {userId}  = req.auth();
-    const user = await CitizenFeed.findById(userId);
+    // const user = await CitizenFeed.findById(userId);
 
     //const userId = [userId];
     //get feed , all posts
-    // const posts = await Post.find({ user })
+    // const posts = await Post.find({ user: userId })
     //   .populate("user")
     //   .sort({ createdAt: -1 });
 
     // res.json({ success: true, posts });
-    const posts = await Post.find({ user: userId })
-      .populate("user")
-      .sort({ createdAt: -1 });
+    const posts = await Post.find().populate("user").sort({ createdAt: -1 });
 
     res.json({ success: true, posts });
   } catch (error) {
@@ -80,7 +78,8 @@ export const getFeedPosts = async (req, res) => {
 //vote posts/issues
 export const votePost = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.userId;
     const { postId } = req.body;
 
     const post = await Post.findById(postId);
