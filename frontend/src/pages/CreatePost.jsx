@@ -31,14 +31,14 @@ const CreatePost = () => {
         : "text";
 
     try {
-      const FormData = new FormData();
-      FormData.append("content", content);
-      FormData.append("post_type", postType);
+      const formData = new FormData();
+      formData.append("content", content);
+      formData.append("post_type", postType);
       images.map((image) => {
-        FormData.append("images", image);
+        formData.append("images", image);
       });
 
-      const { data } = await api.post("/api/post/add", FormData, {
+      const { data } = await api.post("/api/post/add", formData, {
         headers: {
           Authorization: `Bearer ${await getToken()}`,
         },
@@ -51,7 +51,7 @@ const CreatePost = () => {
         throw new Error(data.message);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response?.data || error.message);
       throw new Error(error.message);
     }
     setLoading(false);
