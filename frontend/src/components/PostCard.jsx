@@ -5,6 +5,8 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth } from "@clerk/react";
+import api from "../api/axios";
+import toast from "react-hot-toast";
 
 const PostCard = ({ post }) => {
   const postWithHashtags = (post.content || "").replace(
@@ -16,14 +18,54 @@ const PostCard = ({ post }) => {
   //   '<span class="text-indigo-600">$1</span>'
   // );
 
-  // const [likes, setLikes] = useState(post.like_count)
-  const [likes, setLikes] = useState(
-    post.likes_count || post.votes_count || []
+  // --------=++++const [likes, setLikes] = useState(post.like_count)
+  // const [likes, setLikes] = useState(
+  //   post.likes_count || post.votes_count || []
+  // );
+  const [votes, setVotes] = useState(
+    post.votes_count || post.votes_count || []
   );
   const currentUser = useSelector((state) => state.user.value);
 
   const { getToken } = useAuth();
-  const handleLike = async () => {};
+  const handleVote = async () => {
+    const { data } = await api.post(
+      `/api/post/vote`,
+      { postId: post._id },
+      { headers: { Authorization: `Bearer ${await getToken()}` } }
+    );
+    if (data.success) {
+      toast.success(data.message);
+      setVotes((prev) => {
+        if (prev.includes(currentUser._id)) {
+          return prev.filter((id) => id !== currentUser._id);
+        } else {
+          return [...prev, currentUser._id];
+        }
+      });
+    } else {
+      toast(data.message);
+    }
+  };
+  // const handleLike = async () => {
+  //   const { data } = await api.post(
+  //     `/api/post/like`,
+  //     { postId: post._id },
+  //     { headers: { Authorization: `Bearer ${await getToken()}` } }
+  //   );
+  //   if (data.success) {
+  //     toast.success(data.message);
+  //     setLikes((prev) => {
+  //       if (prev.includes(currentUser._id)) {
+  //         return prev.filter((id) => id !== currentUser._id);
+  //       } else {
+  //         return [...prev, currentUser._id];
+  //       }
+  //     });
+  //   } else {
+  //     toast(data.message);
+  //   }
+  // };
 
   const navigate = useNavigate();
 
@@ -96,11 +138,11 @@ const PostCard = ({ post }) => {
         <div className="flex items-center gap-1">
           <Heart
             className={`w-4 h-4 cursor-pointer ${
-              likes.includes(currentUser?._id) && "text-red-500 fill-red-500"
+              votes.includes(currentUser?._id) && "text-red-500 fill-red-500"
             }`}
-            onClick={handleLike}
+            onClick={handleVote}
           />
-          <span>{likes.length}</span>
+          <span>{votes.length}</span>
         </div>
         {/* <div className='flex items-center gap-1'>
                 <MessageCircle className="w-4 h-4"/>
