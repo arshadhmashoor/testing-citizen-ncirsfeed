@@ -26,13 +26,19 @@ export const getUserData = async (req, res) => {
 //update user data
 export const updateUserData = async (req, res) => {
   try {
-    const { userId } = req.auth();
-    // const userId = req.userId;
+    // const { userId } = req.auth();
+    const userId = req.userId;
     // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
     let { username, bio, location, full_name } = req.body;
 
     const tempUser = await CitizenFeed.findById(userId);
 
+    if (!tempUser) {
+      return res.json({
+        success: false,
+        message: "User not found",
+      });
+    }
     !username && (username = tempUser.username);
 
     if (tempUser.username !== username) {
