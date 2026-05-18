@@ -6,13 +6,19 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PostCard = ({ post }) => {
-  const postWithHashtags = post.content.replace(
+  const postWithHashtags = (post.content || "").replace(
     /(#\w+)/g,
     '<span class="text-indigo-600">$1</span>'
   );
+  // const postWithHashtags = post.content.replace(
+  //   /(#\w+)/g,
+  //   '<span class="text-indigo-600">$1</span>'
+  // );
 
   // const [likes, setLikes] = useState(post.like_count)
-  const [likes, setLikes] = useState(post.likes_count || []);
+  const [likes, setLikes] = useState(
+    post.likes_count || post.votes_count || []
+  );
   const currentUser = useSelector((state) => state.user.value);
   const handleLike = async () => {};
 
@@ -51,7 +57,7 @@ const PostCard = ({ post }) => {
 
       {/** images */}
       <div className="grid grid-cols-2 gap-2">
-        {post.image_urls.map((img, index) => (
+        {post.image_urls?.map((img, index) => (
           <img
             src={img}
             key={index}
