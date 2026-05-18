@@ -12,7 +12,7 @@ const PostCard = ({ post }) => {
   );
 
   // const [likes, setLikes] = useState(post.like_count)
-  const [likes, setLikes] = useState(post.likes_count);
+  const [likes, setLikes] = useState(post.likes_count || []);
   const currentUser = useSelector((state) => state.user.value);
   const handleLike = async () => {};
 
@@ -87,7 +87,7 @@ const PostCard = ({ post }) => {
         <div className="flex items-center gap-1">
           <Heart
             className={`w-4 h-4 cursor-pointer ${
-              likes.includes(currentUser._id) && "text-red-500 fill-red-500"
+              likes.includes(currentUser?._id) && "text-red-500 fill-red-500"
             }`}
             onClick={handleLike}
           />
