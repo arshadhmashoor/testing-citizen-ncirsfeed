@@ -8,10 +8,10 @@ import Post from "../models/Post.js";
 //get user data using userId
 export const getUserData = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
     //temprarity use the below instead of req.auth
     // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
-    // const userId = req.userId;
+    const userId = req.userId;
     const user = await CitizenFeed.findById(userId);
     if (!user) {
       return res.json({ success: false, message: "user not found" });
@@ -126,7 +126,7 @@ export const discoverUsers = async (req, res) => {
 };
 
 //get user profile of other citizesn/users
-export const getUserProfiles = async (res, req) => {
+export const getUserProfiles = async (req, res) => {
   try {
     const { profileId } = req.body;
     const profile = await CitizenFeed.findById(profileId);
