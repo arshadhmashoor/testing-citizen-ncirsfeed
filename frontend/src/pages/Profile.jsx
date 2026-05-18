@@ -6,7 +6,7 @@ import UserProfileInfo from "../components/UserProfileInfo";
 import PostCard from "../components/PostCard";
 import moment from "moment";
 import ProfileModal from "../components/ProfileModal";
-import { getToken, useAuth } from "@clerk/react";
+import { useAuth } from "@clerk/react";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 const Profile = () => {
   const currentUser = useSelector((state) => state.user.value);
 
-  const { getToken } = useAuth;
+  const { getToken } = useAuth();
   const { profileId } = useParams();
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -22,7 +22,7 @@ const Profile = () => {
   const [showEdit, setShowEdit] = useState(false);
 
   const fetchUser = async (profileId) => {
-    const token = await getToken;
+    const token = await getToken();
     try {
       const { data } = await api.post(
         `/api/user/profile`,
@@ -32,7 +32,7 @@ const Profile = () => {
         }
       );
       if (data.success) {
-        setUser(data.Profile);
+        setUser(data.profile);
         setPosts(data.posts);
       } else {
         toast.error(data.message);
