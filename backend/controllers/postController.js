@@ -6,11 +6,12 @@ import CitizenFeed from "../models/CitizenFeed.js";
 //add post issue
 export const addPost = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.userId;
     // const { userId } = req.userId;
     // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
     const { content, post_type } = req.body;
-    const images = req.files;
+    const images = req.files || [];
 
     let image_urls = [];
 
