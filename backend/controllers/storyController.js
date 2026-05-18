@@ -47,19 +47,43 @@ export const addUserStory = async (req, res) => {
 //get user stories list
 export const getStories = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.userId;
     const user = await CitizenFeed.findById(userId);
 
     //user
     const userIds = [userId];
 
     const stories = await Story.find({
-      user: { $in: userIds },
+      user: userId,
     })
       .populate("user")
       .sort({ createdAt: -1 });
+    res.json({
+      success: true,
+      stories,
+    });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
+// export const getStories = async (req, res) => {
+//   try {
+//     // const { userId } = req.auth();
+//     const userId = req.userId;
+//     const user = await CitizenFeed.findById(userId);
+
+//     //user
+//     const userIds = [userId];
+
+//     const stories = await Story.find({
+//       user: { $in: userIds },
+//     })
+//       .populate("user")
+//       .sort({ createdAt: -1 });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: error.message });
+//   }
+// };
