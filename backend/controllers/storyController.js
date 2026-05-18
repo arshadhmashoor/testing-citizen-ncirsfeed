@@ -7,7 +7,8 @@ import { inngest } from "../inngest/index.js";
 //add user-Citizen story
 export const addUserStory = async (req, res) => {
   try {
-    const { userId } = req.auth();
+    // const { userId } = req.auth();
+    const userId = req.userId;
     const { content, media_type, background_color } = req.body;
     const media = req.file;
     let media_url = "";
