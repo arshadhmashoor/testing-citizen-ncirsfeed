@@ -24,12 +24,13 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async (params) => {
+    const fetchData = async () => {
       if (user) {
         const token = await getToken();
         dispatch(fetchUser(token));
       }
     };
+    fetchData();
   }, [user, getToken, dispatch]);
 
   // useEffect(() => {
