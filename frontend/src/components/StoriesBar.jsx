@@ -22,13 +22,15 @@ const StoriesBar = () => {
       const { data } = await api.get("/api/story/get", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log("STORIES DATA:", data);
       if (data.success) {
         setStories(data.stories);
       } else {
-        toast(data.message);
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.log(error.response?.data || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
