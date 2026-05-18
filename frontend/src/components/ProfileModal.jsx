@@ -13,12 +13,12 @@ const ProfileModal = ({ setShowEdit }) => {
 
   const user = useSelector((state) => state.user.value);
   const [editForm, setEditForm] = useState({
-    username: user.username,
-    bio: user.bio,
-    location: user.location,
+    username: user?.username || "",
+    bio: user?.bio || "",
+    location: user?.location || "",
     profile_picture: null,
     cover_photo: null,
-    full_name: user.full_name,
+    full_name: user?.full_name || "",
   });
 
   const handleSaveProfile = async (e) => {
