@@ -13,5 +13,6 @@ const postRouter = express.Router();
 postRouter.post("/add", protect, upload.array("images", 5), addPost);
 postRouter.get("/feed", protect, getFeedPosts);
 postRouter.post("/vote", protect, votePost);
+postRouter.get("/myposts", protect, getMyPosts);
 
 export default postRouter;
