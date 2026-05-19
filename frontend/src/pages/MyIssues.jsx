@@ -4,7 +4,8 @@ import { dummyPostsData, dummyUserData } from "../assets/assets";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
 import UserProfileInfo from "../components/UserProfileInfo";
-import PostCard from "../components/PostCard";
+//  import PostCard from "../components/PostCard";
+import PostCardNew from "../components/PostCardNew";
 
 const MyIssues = () => {
   const { profileId } = useParams();
@@ -64,7 +65,7 @@ const MyIssues = () => {
           {activeTab === "posts" && (
             <div className="mt-6 flex flex-col items-center gap-6">
               {posts.map((post) => (
-                <PostCard key={post._id} post={post} />
+                <PostCardNew key={post._id} post={post} />
               ))}
             </div>
           )}

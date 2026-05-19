@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 // import { dummyPostsData } from "../assets/assets";
 import Loading from "../components/Loading";
 import StoriesBar from "../components/StoriesBar";
-import PostCard from "../components/PostCard";
+// import PostCard from "../components/PostCard";
+import PostCardNew from "../components/PostCardNew";
 import { assets } from "../assets/assets";
 import RecentMessages from "../components/RecentMessages";
 import { useAuth } from "@clerk/react";
@@ -51,7 +52,7 @@ const Feed = () => {
         <StoriesBar />
         <div className="p-4 space-y-6">
           {feeds.map((post) => (
-            <PostCard key={post._id} post={post} />
+            <PostCardNew key={post._id} post={post} />
           ))}
         </div>
       </div>

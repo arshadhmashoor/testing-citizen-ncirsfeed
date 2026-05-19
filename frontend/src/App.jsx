@@ -7,7 +7,7 @@ import ChatBox from "./pages/ChatBox";
 import Connections from "./pages/Connections";
 import Discover from "./pages/Discover";
 import Profile from "./pages/Profile";
-import CreatePost from "./pages/CreatePost";
+// import CreatePost from "./pages/CreatePost";
 import Dashboard from "./pages/Dashboard";
 import Notifications from "./pages/Notifications";
 import { useUser, useAuth } from "@clerk/react";
@@ -17,6 +17,7 @@ import MyIssues from "./pages/MyIssues";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./features/citizen/userSlice";
+import CreatePostNew from "./pages/CreatePostNew";
 
 const App = () => {
   const { user } = useUser();
@@ -72,7 +73,7 @@ const App = () => {
           <Route path="discover" element={<Discover />} />
           <Route path="profile" element={<Profile />} />
           <Route path="profile/:profileId" element={<Profile />} />
-          <Route path="create-post" element={<CreatePost />} />
+          <Route path="create-post-new" element={<CreatePostNew />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
@@ -82,3 +83,11 @@ const App = () => {
 };
 
 export default App;
+{
+  /* <Route path="/report-issue" element={<IssueCategorySelection />} />
+          <Route path="/issue-details" element={<IssueDetailsUpload />} />
+          <Route
+            path="/ai-department-suggestion"
+            element={<AIDepartmentSuggestion />}
+          /> */
+}
