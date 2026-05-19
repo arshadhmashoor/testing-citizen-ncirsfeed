@@ -10,7 +10,18 @@ export const addPost = async (req, res) => {
     const userId = req.userId;
     // const { userId } = req.userId;
     // const userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
-    const { content, post_type } = req.body;
+    // const { content, post_type } = req.body;
+    const {
+      content,
+      post_type,
+      title,
+      desc,
+      priority,
+      location,
+      category,
+      subCategory,
+      aiSuggestedDepartment,
+    } = req.body;
     const images = req.files || [];
 
     let image_urls = [];
@@ -43,6 +54,13 @@ export const addPost = async (req, res) => {
       content,
       image_urls,
       post_type,
+      title,
+      desc,
+      priority,
+      location,
+      category,
+      subCategory,
+      aiSuggestedDepartment,
     });
     res.json({ success: true, message: "issue post created successfully" });
   } catch (error) {
