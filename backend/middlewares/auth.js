@@ -2,6 +2,7 @@ export const protect = (req, res, next) => {
   req.userId = "user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4";
   next();
 };
+//user_3DhJ6sjyQ1kidbGtuQL7rs3Ymu4
 
 // export const protect = async (req, res, next) => {
 //   try {

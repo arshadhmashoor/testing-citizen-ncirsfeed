@@ -116,3 +116,17 @@ export const votePost = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// Get posts by the logged-in user
+export const getMyPosts = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const posts = await Post.find({ user: userId })
+      .populate("user")
+      .sort({ createdAt: -1 });
+    res.json({ success: true, posts });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};

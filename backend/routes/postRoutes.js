@@ -5,6 +5,7 @@ import {
   addPost,
   getFeedPosts,
   votePost,
+  getMyPosts,
 } from "../controllers/postController.js";
 
 const postRouter = express.Router();
